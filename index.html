@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Personal Website</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #38bdf8;
+    }
+
+    nav ul li a i {
+      margin-right: 6px;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 100px 20px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: #38bdf8;
+      filter: blur(150px);
+      opacity: 0.3;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      z-index: 1;
+    }
+
+    .hero span {
+      color: #38bdf8;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-top: 15px;
+      color: #cbd5e1;
+      z-index: 1;
+    }
+
+    .hero img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-top: 35px;
+      border: 5px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 30px rgba(56,189,248,0.4);
+      z-index: 1;
+    }
+
+    .hero button {
+      margin-top: 35px;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 50px;
+      background: #38bdf8;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #38bdf8;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      color: #38bdf8;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .info-grid,
+    .education-grid,
+    .skills-grid,
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .icon {
+      font-size: 45px;
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    .skills-grid .card {
+      text-align: center;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 18px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      outline: none;
+    }
+
+    .contact-form button {
+      padding: 18px;
+      border: none;
+      border-radius: 12px;
+      background: #38bdf8;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px #38bdf8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #020617;
+      color: #94a3b8;
+      margin-top: 50px;
+    }
+
+    @media(max-width:768px) {
+      .hero {
+        padding-top: 180px;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">MyPortfolio</div>
+
+    <ul>
+      <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#info"><i class="fa-solid fa-user"></i> Info</a></li>
+      <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+      <li><a href="#skills"><i class="fa-solid fa-code"></i> Skills</a></li>
+      <li><a href="#gallery"><i class="fa-solid fa-image"></i> Gallery</a></li>
+      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>Hello, I'm <span id="displayName">Reymart Estrael</span></h1>
+  <p id="displayJob">Developer</p>
+
+  <img id="profilePreview" src="./1000015133.jpg" alt="Profile Picture">
+
+  <button onclick="document.getElementById('contact').scrollIntoView()">
+    Contact Me
+  </button>
+</section>
+
+<section id="profile-form">
+  <h2 class="section-title">Create Your Own Portfolio</h2>
+
+  <form class="contact-form" onsubmit="generatePortfolio(event)">
+    <input type="text" id="fullName" placeholder="Full Name" required>
+    <input type="text" id="jobTitle" placeholder="Job Title" required>
+    <input type="text" id="address" placeholder="Address" required>
+    <input type="email" id="userEmail" placeholder="Email" required>
+    <input type="text" id="school" placeholder="School Name" required>
+    <input type="text" id="skillsInput" placeholder="Skills (HTML,CSS,JavaScript)" required>
+
+    <label>Upload Profile Picture</label>
+    <input type="file" id="profileImage" accept="image/*">
+
+    <label>Upload Gallery Images</label>
+    <input type="file" id="galleryImages" accept="image/*" multiple>
+
+    <button type="submit">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      Generate Portfolio
+    </button>
+  </form>
+</section>
+
+<section id="info">
+  <h2 class="section-title">Personal Info</h2>
+
+  <div class="info-grid">
+    <div class="card">
+      <i class="fa-solid fa-user icon"></i>
+      <h3>Name</h3>
+      <p id="infoName">Reymart Estrael</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-location-dot icon"></i>
+      <h3>Address</h3>
+      <p id="infoAddress">Jaro, Leyte</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-envelope icon"></i>
+      <h3>Email</h3>
+      <p id="infoEmail">reymart.estrael@evsu.edu.ph</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2 class="section-title">Educational Background</h2>
+
+  <div class="education-grid">
+    <div class="card">
+      <i class="fa-solid fa-graduation-cap icon"></i>
+      <h3>College</h3>
+      <p>BS Information Technology</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-school icon"></i>
+      <h3>School</h3>
+      <p id="infoSchool">Eastern Visayas State University</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">Skills & Talent</h2>
+
+  <div class="skills-grid" id="skillsContainer">
+    <div class="card">
+      <i class="fa-brands fa-java icon"></i>
+      <h3>Java</h3>
+    </div>
+
+    <div class="card">
+      <i class="fa-brands fa-html5 icon"></i>
+      <h3>HTML</h3>
+    </div>
+
+    <div class="card">
+      <i class="fa-brands fa-css3-alt icon"></i>
+      <h3>CSS</h3>
+    </div>
+
+    <div class="card">
+      <i class="fa-brands fa-js icon"></i>
+      <h3>Javascript</h3>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2 class="section-title">Gallery</h2>
+
+  <div class="gallery" id="galleryContainer">
+    <img src="./1000015134.jpg">
+    <img src="./1000015132.jpg">
+    <img src="1000015133.jpg">
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact Me</h2>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="5" placeholder="Your Message"></textarea>
+
+    <button type="submit">
+      <i class="fa-solid fa-paper-plane"></i>
+      Send Message
+    </button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Modern Personal Website</p>
+</footer>
+
+<script>
+  function getSkillIcon(skill) {
+    const value = skill.toLowerCase();
+
+    if(value.includes('html')) return 'fa-brands fa-html5';
+    if(value.includes('css')) return 'fa-brands fa-css3-alt';
+    if(value.includes('javascript') || value.includes('js')) return 'fa-brands fa-js';
+    if(value.includes('java')) return 'fa-brands fa-java';
+    if(value.includes('python')) return 'fa-brands fa-python';
+    if(value.includes('react')) return 'fa-brands fa-react';
+    if(value.includes('sql') || value.includes('database')) return 'fa-solid fa-database';
+    if(value.includes('design')) return 'fa-solid fa-palette';
+
+    return 'fa-solid fa-code';
+  }
+
+  function generatePortfolio(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById('fullName').value;
+    const jobTitle = document.getElementById('jobTitle').value;
+    const address = document.getElementById('address').value;
+    const email = document.getElementById('userEmail').value;
+    const school = document.getElementById('school').value;
+    const skills = document.getElementById('skillsInput').value.split(',');
+
+    document.getElementById('displayName').innerText = fullName;
+    document.getElementById('displayJob').innerText = jobTitle;
+    document.getElementById('infoName').innerText = fullName;
+    document.getElementById('infoAddress').innerText = address;
+    document.getElementById('infoEmail').innerText = email;
+    document.getElementById('infoSchool').innerText = school;
+
+    const skillsContainer = document.getElementById('skillsContainer');
+    skillsContainer.innerHTML = '';
+
+    skills.forEach(skill => {
+      const iconClass = getSkillIcon(skill.trim());
+
+      skillsContainer.innerHTML += `
+        <div class="card">
+          <i class="${iconClass} icon"></i>
+          <h3>${skill.trim()}</h3>
+        </div>
+      `;
+    });
+
+    const profileImage = document.getElementById('profileImage').files[0];
+
+    if(profileImage) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const profilePreview = document.getElementById('profilePreview');
+
+        profilePreview.src = e.target.result;
+
+        profilePreview.style.objectFit = 'cover';
+        profilePreview.style.width = '180px';
+        profilePreview.style.height = '180px';
+        profilePreview.style.borderRadius = '50%';
+      };
+
+      reader.readAsDataURL(profileImage);
+    }
+
+    const galleryImages = document.getElementById('galleryImages').files;
+
+    if(galleryImages.length > 0) {
+      const galleryContainer = document.getElementById('galleryContainer');
+      galleryContainer.innerHTML = '';
+
+      Array.from(galleryImages).forEach(image => {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+          galleryContainer.innerHTML += `<img src="${e.target.result}">`;
+        }
+
+        reader.readAsDataURL(image);
+      });
+    }
+
+    alert('Portfolio Updated Successfully!');
+
+    document.getElementById('home').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+</body>
+</html>
